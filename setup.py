@@ -43,13 +43,12 @@ setup(name="qnotero",
 		},
 	data_files=[
 		("/usr/share/qnotero", ["COPYING"]), \
-		("/usr/share/applications", ["data/qnotero.desktop"]), \
+		#("/usr/share/applications", ["data/qnotero.desktop"]), \
 		("/usr/share/qnotero/resources/default", \
 			glob.glob("resources/default/*")), \
 		("/usr/share/qnotero/resources/elementary", \
 			glob.glob("resources/elementary/*")), \
 		("/usr/share/qnotero/resources/tango", \
 			glob.glob("resources/tango/*")), \
-			
 		]
 	)
