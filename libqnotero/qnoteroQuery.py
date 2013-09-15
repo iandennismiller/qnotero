@@ -24,42 +24,42 @@ class QnoteroQuery(QLineEdit):
 	"""The search input box"""
 
 	def __init__(self, qnotero):
-	
+
 		"""
 		Constructor
-		
+
 		Arguments:
 		qnotero -- a Qnotero instance
-		"""		
-	
+		"""
+
 		QLineEdit.__init__(self, qnotero)
 		self.qnotero = qnotero
 		self.timer = QTimer(self)
-		self.needUpdate = True		
+		self.needUpdate = True
 		self.textChanged.connect(self._textChanged)
 
 	def keyPressEvent(self, e):
-	
+
 		"""
 		Handle key presses
-		
+
 		Arguments:
 		e -- a QKeyEvent
 		"""
-	
+
 		if e.key() == Qt.Key_Return:
 			self.qnotero.search(setFocus=False)
 			return
 		if e.key() == Qt.Key_Down:
 			if self.needUpdate:
-				self.qnotero.search(setFocus=True)								
+				self.qnotero.search(setFocus=True)
 			elif self.qnotero.ui.listWidgetResults.count() > 0:
 				self.qnotero.ui.listWidgetResults.setFocus()
 			self.qnotero.ui.listWidgetResults.setCurrentItem( \
 				self.qnotero.ui.listWidgetResults.item(0))
 			return
-		
-		QLineEdit.keyPressEvent(self, e)		
+
+		QLineEdit.keyPressEvent(self, e)
 		self.timer.stop()
 		self.timer = QTimer(self)
 		self.timer.setSingleShot(True)
@@ -68,13 +68,13 @@ class QnoteroQuery(QLineEdit):
 		self.timer.start()
 
 	def search(self):
-	
+
 		"""Perform a search without losing focus"""
-				
-		self.qnotero.search(setFocus=False)		
-		
+
+		self.qnotero.search(setFocus=False)
+
 	def _textChanged(self):
-	
+
 		"""Set the needUpdate flag"""
-		
+
 		self.needUpdate = True
