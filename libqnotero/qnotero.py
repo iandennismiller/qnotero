@@ -64,7 +64,27 @@ class Qnotero(QMainWindow):
 			self.preferences(firstRun=True)
 		if getConfig("autoUpdateCheck"):
 			self.updateCheck()
-			
+
+		self.ui.lineEditQuery.installEventFilter(self)
+
+	def eventFilter(self, source, event):
+		from PyQt4 import QtCore, QtGui
+		# self.ui.lineEditQuery
+		#if (event.type() == QtCore.QEvent.KeyPress and
+		#	source is self.widget):
+		print source
+		if (event.type() == QtCore.QEvent.KeyPress):
+			print('key pressed: %s' % event.text())
+			return True
+		else:
+			print event.type()
+		return QtGui.QWidget.eventFilter(self, source, event)
+
+	def keyPressEvent(self, event):
+		# implement the method here
+		print "blah"
+		self.label.setText(self.label.text() + 'a')
+
 	def close(self):
 
 		"""Exit the program"""
@@ -153,14 +173,14 @@ class Qnotero(QMainWindow):
 		self.move(x, y)
 
 		# Show it
-		self.show()		
+		self.show()
 		QCoreApplication.processEvents()
 		self.raise_()
 		self.activateWindow()
 
 		# Focus the search box
-		self.ui.lineEditQuery.selectAll()
-		self.ui.lineEditQuery.setFocus()	
+		#self.ui.lineEditQuery.selectAll()
+		#self.ui.lineEditQuery.setFocus()
 
 	def preferences(self, firstRun=False):
 

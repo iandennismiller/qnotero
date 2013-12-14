@@ -21,9 +21,11 @@ class Ui_Qnotero(object):
         Qnotero.setMinimumSize(QtCore.QSize(400, 0))
         Qnotero.setWindowTitle(QtGui.QApplication.translate("Qnotero", "Qnotero", None, QtGui.QApplication.UnicodeUTF8))
         self.centralwidget = QtGui.QWidget(Qnotero)
+
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
+
         self.widgetSearch = QtGui.QWidget(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -31,23 +33,31 @@ class Ui_Qnotero(object):
         sizePolicy.setHeightForWidth(self.widgetSearch.sizePolicy().hasHeightForWidth())
         self.widgetSearch.setSizePolicy(sizePolicy)
         self.widgetSearch.setObjectName(_fromUtf8("widgetSearch"))
+
         self.horizontalLayout = QtGui.QHBoxLayout(self.widgetSearch)
         self.horizontalLayout.setMargin(0)
         self.horizontalLayout.setMargin(0)
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
+
         self.lineEditQuery = QnoteroQuery(self.widgetSearch)
         self.lineEditQuery.setMinimumSize(QtCore.QSize(0, 32))
-        self.lineEditQuery.setFrame(False)
+        self.lineEditQuery.setFrame(True)
+        self.lineEditQuery.setReadOnly(False)
         self.lineEditQuery.setObjectName(_fromUtf8("lineEditQuery"))
-        self.horizontalLayout.addWidget(self.lineEditQuery)
+        self.lineEditQuery.setFocusPolicy(QtCore.Qt.StrongFocus)
+
         self.pushButtonSearch = QtGui.QPushButton(self.widgetSearch)
         self.pushButtonSearch.setText(_fromUtf8(""))
         self.pushButtonSearch.setIconSize(QtCore.QSize(32, 32))
         self.pushButtonSearch.setFlat(True)
         self.pushButtonSearch.setObjectName(_fromUtf8("pushButtonSearch"))
-        self.horizontalLayout.addWidget(self.pushButtonSearch)
+
+        # self.horizontalLayout.addWidget(self.pushButtonSearch)
+        self.horizontalLayout.addWidget(self.lineEditQuery)
+
         self.verticalLayout.addWidget(self.widgetSearch)
         self.labelResultMsg = QtGui.QLabel(self.centralwidget)
+
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
